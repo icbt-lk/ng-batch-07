@@ -17,9 +17,23 @@
         <%
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-            if (!Util.authenticate(username, password)) {
-                response.sendRedirect("login.jsp");
-            }
+            if (!Util.authenticate(username, password)) { 
+                //Check for the cookie
+                for(Cookie cookie : request.getCookies()) {
+                    if (cookie.getName().equals("sesid")) {
+                        username = (String)session.getAttribute(cookie.getValue());
+                        if (username == null) {
+                            response.sendRedirect("login.jsp");
+                        }
+                    }
+                }                      
+            } else {
+                // Create session and cookie
+                String sesid = "123";
+                Cookie cookie = new Cookie("sesid", sesid);
+                session.setAttribute(sesid, username);
+                response.addCookie(cookie);
+            }   
         %>
         <h1>Hello World!</h1>
     </body>
