@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -36,5 +38,25 @@ public class DBUtil {
         }
          
         return st;
+    }
+    
+    public List<Student> getStudents() {
+        List<Student> students = new ArrayList<>();
+         try {             
+            
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Statement statement = conn.createStatement();
+            
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM students");
+            while(resultSet.next()) {
+                Student st = new Student();
+                st.setId(resultSet.getInt("id"));
+                st.setName(resultSet.getString("name"));
+                students.add(st);
+            }
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+        return students;
     }
 }

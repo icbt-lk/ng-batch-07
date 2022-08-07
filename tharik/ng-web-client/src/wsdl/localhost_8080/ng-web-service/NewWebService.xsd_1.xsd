@@ -4,9 +4,30 @@
 
 <xs:element name="getStudentResponse" type="tns:getStudentResponse"/>
 
+<xs:element name="getStudents" type="tns:getStudents"/>
+
+<xs:element name="getStudentsResponse" type="tns:getStudentsResponse"/>
+
 <xs:element name="hello" type="tns:hello"/>
 
 <xs:element name="helloResponse" type="tns:helloResponse"/>
+
+<xs:complexType name="getStudents">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getStudentsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:student" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="student">
+<xs:sequence>
+<xs:element name="id" type="xs:int"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
 
 <xs:complexType name="getStudent">
 <xs:sequence>
@@ -17,13 +38,6 @@
 <xs:complexType name="getStudentResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:student" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="student">
-<xs:sequence>
-<xs:element name="id" type="xs:int"/>
-<xs:element name="name" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

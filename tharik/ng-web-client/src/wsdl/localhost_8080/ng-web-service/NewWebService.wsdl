@@ -4,11 +4,11 @@
 <xsd:import namespace="http://icbt/" schemaLocation="http://localhost:8080/ng-web-service/NewWebService?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="hello">
-<part name="parameters" element="tns:hello"/>
+<message name="getStudents">
+<part name="parameters" element="tns:getStudents"/>
 </message>
-<message name="helloResponse">
-<part name="parameters" element="tns:helloResponse"/>
+<message name="getStudentsResponse">
+<part name="parameters" element="tns:getStudentsResponse"/>
 </message>
 <message name="getStudent">
 <part name="parameters" element="tns:getStudent"/>
@@ -16,19 +16,29 @@
 <message name="getStudentResponse">
 <part name="parameters" element="tns:getStudentResponse"/>
 </message>
+<message name="hello">
+<part name="parameters" element="tns:hello"/>
+</message>
+<message name="helloResponse">
+<part name="parameters" element="tns:helloResponse"/>
+</message>
 <portType name="NewWebService">
-<operation name="hello">
-<input wsam:Action="http://icbt/NewWebService/helloRequest" message="tns:hello"/>
-<output wsam:Action="http://icbt/NewWebService/helloResponse" message="tns:helloResponse"/>
+<operation name="getStudents">
+<input wsam:Action="http://icbt/NewWebService/getStudentsRequest" message="tns:getStudents"/>
+<output wsam:Action="http://icbt/NewWebService/getStudentsResponse" message="tns:getStudentsResponse"/>
 </operation>
 <operation name="getStudent">
 <input wsam:Action="http://icbt/NewWebService/getStudentRequest" message="tns:getStudent"/>
 <output wsam:Action="http://icbt/NewWebService/getStudentResponse" message="tns:getStudentResponse"/>
 </operation>
+<operation name="hello">
+<input wsam:Action="http://icbt/NewWebService/helloRequest" message="tns:hello"/>
+<output wsam:Action="http://icbt/NewWebService/helloResponse" message="tns:helloResponse"/>
+</operation>
 </portType>
 <binding name="NewWebServicePortBinding" type="tns:NewWebService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="hello">
+<operation name="getStudents">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -38,6 +48,15 @@
 </output>
 </operation>
 <operation name="getStudent">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="hello">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

@@ -4,6 +4,7 @@
  */
 package icbt;
 
+import java.util.List;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -27,5 +28,11 @@ public class NewWebService {
     public Student getStudent(@WebParam(name = "id") int id) {
         DBUtil util = new DBUtil();
         return util.getStudent(id);
+    }
+    
+    @WebMethod(operationName = "getStudents")
+    public List<Student> getStudents() {
+        DBUtil util = new DBUtil();
+        return util.getStudents();
     }
 }
