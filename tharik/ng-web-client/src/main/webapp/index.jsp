@@ -33,14 +33,27 @@
                 padding-left: 20px;
             }
             
+            #edit-section {
+                padding-top: 30px;
+                padding-right: 20px;
+                padding-bottom: 30px;
+                padding-left: 20px;
+            }
         </style>
     </head>
     <body>
         <div id='control-section'>
             <form action="index.jsp" method="post">
                 Student ID : <input type="text" name="id"/>
-            <input type="submit" value="Load">
-        </form>
+                <input type="submit" value="Load">
+            </form>
+        </div>
+        <div id='edit-section'>
+                <form action="process_student.jsp" method="post">
+                   Student ID : <input type="text" name="id"/>
+                   Student Name : <input type="text" name="name"/>
+                <input type="submit" value="Add">
+            </form>
         </div>
         <div id='result-section'>
             <table id='students' class='table table-striped table-bordered' style='width:100%'>
@@ -48,7 +61,7 @@
                 <tbody>
                     <%                        
                         NewWebService_Service service = new NewWebService_Service();
-                        NewWebService proxy = service.getNewWebServicePort();
+                        NewWebService proxy = service.getNewWebServicePort();                        
                         if (request.getParameter("id") == null) {
                             for(Student st :  proxy.getStudents()) {
                                 UIUtils.printStudentRows(st, out);

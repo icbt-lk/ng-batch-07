@@ -35,4 +35,22 @@ public class NewWebService {
         DBUtil util = new DBUtil();
         return util.getStudents();
     }
+    
+    @WebMethod(operationName = "addStudent")
+    public boolean addStudent(@WebParam(name = "st") Student st){
+        DBUtil util = new DBUtil();
+        return util.addStudent(st);
+    }
+    
+    @WebMethod(operationName = "updateStudent")
+    public boolean updateStudent(@WebParam(name = "st") Student st) {
+        DBUtil util = new DBUtil();
+        return util.updateStudent(st);
+    }
+    
+    @WebMethod(operationName = "deleteStudent")
+    public boolean deleteStudent(@WebParam(name = "id") int id) {
+        DBUtil util = new DBUtil();
+        return util.deleteStudent(id);
+    }
 }

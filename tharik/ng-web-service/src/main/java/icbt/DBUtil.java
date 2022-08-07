@@ -59,4 +59,40 @@ public class DBUtil {
         }
         return students;
     }
+    
+    public boolean addStudent(Student st) {
+        int rowsAffected = 0;
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Statement statement = conn.createStatement();
+            rowsAffected = statement.executeUpdate("INSERT INTO `students` VALUES (" + st.getId() + ",'" + st.getName() + "')");
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+        return rowsAffected > 0;
+    }
+    
+    public boolean updateStudent(Student st) {
+        int rowsAffected = 0;
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Statement statement = conn.createStatement();
+            rowsAffected = statement.executeUpdate("UPDATE `students` SET `name` = '" + st.getName() + "' WHERE (`id` = '" + st.getId() + "')");
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+        return rowsAffected > 0;
+    }
+    
+    public boolean deleteStudent(int id) {
+        int rowsAffected = 0;
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Statement statement = conn.createStatement();
+            rowsAffected = statement.executeUpdate("DELETE FROM `students` WHERE (`id` = '" + id + "')");
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+        return rowsAffected > 0;
+    }
 }
